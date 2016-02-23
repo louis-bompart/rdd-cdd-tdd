@@ -16,12 +16,18 @@ Cli-weather need two parameters to run :
 #### How to use it
 
 To get the weather of the current location (based on your IP) :
-`$ node index.js`
-To get the weather of Atlanta :  
-`$ node index.js -a "Atlanta, GA"`  
-`$ node index.js --address="Atlanta, GA"`
+
+* `$ node index.js`
+
+To get the weather of Atlanta :
+
+* `$ node index.js -a "Atlanta, GA"`
+
+* `$ node index.js --address="Atlanta, GA"`
+
 To get the weather of the given GPS location :
-`$ node index.js --lat=34.1036 --long=-84.6374`  
+
+* `$ node index.js --lat=34.1036 --long=-84.6374`  
 
 #### Units
 
