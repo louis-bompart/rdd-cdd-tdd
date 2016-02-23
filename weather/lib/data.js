@@ -3,6 +3,12 @@ var chalk = require('chalk'),
     blue = chalk.blue,
     table = require('cli-table');
 
+/**
+ * collectDates - Collect all dates from data
+ *
+ * @param  {Array} data  Source data
+ * @return {Array}      Array of dates
+ */
 function collectDates(data) {
     var dates = [];
 
@@ -13,7 +19,13 @@ function collectDates(data) {
 
     return dates;
 }
-
+/**
+ * collectLows - Collect the highest temperature
+ *
+ * @param  {Array} data   source data
+ * @param  {Object} units units to use
+ * @return {Array}        table of formated T°.
+ */
 function collectHighs(data, units) {
     var highs = [],
         temp,
@@ -35,6 +47,13 @@ function collectHighs(data, units) {
     return highs;
 }
 
+/**
+ * collectLows - Collect the lowest temperature
+ *
+ * @param  {Array} data   source data
+ * @param  {Object} units units to use
+ * @return {Array}        table of formated T°.
+ */
 function collectLows(data, units) {
     var lows = [],
         temp,
@@ -55,6 +74,12 @@ function collectLows(data, units) {
     return lows;
 }
 
+/**
+ * collectSummary - Collect the summaries
+ *
+ * @param  {Array} data source data
+ * @return {Array}      Array of summaries.
+ */
 function collectSummary(data) {
     var summaries = [];
 
@@ -65,6 +90,12 @@ function collectSummary(data) {
     return summaries;
 }
 
+/**
+ * collectPrecip - Collect the preciipations data
+ *
+ * @param  {Array} data Source data
+ * @return {Array}      Array of string containing the % of precipProbability
+ */
 function collectPrecip(data) {
 
     var precips = [];
@@ -77,6 +108,12 @@ function collectPrecip(data) {
 
 }
 
+/**
+ * formatTime - Display the time in a AM/PM format.
+ *
+ * @param  {Object} date  source date
+ * @return {string}       return the formated string.
+ */
 function formatTime(date) {
     var suffix = "am";
     var hours = date.getHours();
@@ -99,7 +136,12 @@ function formatTime(date) {
 
     return hours + ":" + minutes + " " + suffix;
 }
-
+/**
+ * collectSunsets - Create a tab with all date of sunrises
+ *
+ * @param  {type} data          raw data
+ * @return {Array(string)}      Array of sunrises
+ */
 function collectSunrises(data) {
     var sunrises = [];
 
@@ -114,6 +156,13 @@ function collectSunrises(data) {
 
     return sunrises;
 }
+
+/**
+ * collectSunsets - Create a tab with all date of sunsets
+ *
+ * @param  {type} data          raw data
+ * @return {Array(string)}      Array of sunsets
+ */
 function collectSunsets(data) {
     var sunsets = [];
 
@@ -129,6 +178,13 @@ function collectSunsets(data) {
     return sunsets;
 }
 
+/**
+ * display - Compute the string
+ *
+ * @param  {Date}   now   The current instant
+ * @param  {Object} units The units to used
+ * @return {String}       the computed string.
+ */
 function display(now, units) {
 
 
@@ -150,6 +206,18 @@ function display(now, units) {
     return current + '\n';
 }
 
+/**
+ * displayTable - Display an array
+ *
+ * @param  {type} headers  description
+ * @param  {type} highs    description
+ * @param  {type} lows     description
+ * @param  {type} icons    description
+ * @param  {type} precips  description
+ * @param  {type} sunrises description
+ * @param  {type} sunsets  description
+ * @return {type}          description
+ */
 function displayTable(headers, highs, lows, icons, precips, sunrises, sunsets) {
     var Table = new table({
         head: headers,
@@ -166,6 +234,12 @@ function displayTable(headers, highs, lows, icons, precips, sunrises, sunsets) {
     return Table.toString();
 }
 
+/**
+ * icon - Convert text array to icons array
+ *
+ * @param  {Array} array source array
+ * @return {Array}       icons array
+ */
 function icon(array) {
     var icons = [];
 

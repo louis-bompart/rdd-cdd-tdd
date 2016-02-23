@@ -9,12 +9,24 @@ var args = require('./args'),
 var path = pathing.dirname(require.main.filename) + '/lib/config.json',
     help = require('./help');
 
+/**
+ * Config - constructor of Config
+ *
+ * @param  {object} units Units system used
+ * @param  {string} ip    ip address to use.
+ */
 function Config(units, ip) {
     this.args = parseArgs(process.argv.slice(2));
     this.units = units;
     this.ip = ip;
 }
 
+
+/**
+ *Config.sudo - allow the user to save his config
+ *
+ * @return {type}  description
+ */
 Config.prototype.sudo = function () {
 
     var that = this;
@@ -34,6 +46,10 @@ Config.prototype.sudo = function () {
     }
 };
 
+/**
+ * Config.control - Check all props of config
+ *
+ */
 Config.prototype.control = function () {
     var keys = Object.keys(this.args).length - 1,
         args = this.args;
@@ -54,6 +70,13 @@ if(!String.prototype.includes) {
 }
 
 
+/**
+ * write - Save the presets data
+ *
+ * @param  {type} args  Well, the args given by the user in CLI
+ * @param  {type} units the units system to use
+ * @param  {type} ip    the ip to use
+ */
 function write(args, units, ip) {
 
     console.log(chalk.red('you may have to use ') + chalk.bgBlack.white('sudo') +
@@ -73,6 +96,13 @@ function write(args, units, ip) {
 
 }
 
+/**
+ * read - Read the preset data.
+ *
+ * @param  {type} args  Well, the args given by the user in CLI
+ * @param  {type} units the units system to use
+ * @param  {type} ip    the ip to use
+ */
 function read(args, units, ip) {
 
     if (args.c && !(args.s || args.save)) {
@@ -96,6 +126,14 @@ function read(args, units, ip) {
     }
 }
 
+/**
+ * handleArgs - Do some stuff depending on the flag given in the CLI
+ *
+ * @param  {type} argv  description
+ * @param  {type} units description
+ * @param  {type} ip    description
+ * @return {type}       description
+ */
 function handleArgs(argv, units, ip) {
 
     help(argv);
@@ -118,6 +156,13 @@ function handleArgs(argv, units, ip) {
 
 }
 
+/**
+ * instance - Pretty obvious
+ *
+ * @param  {type} units description
+ * @param  {type} ip    description
+ * @return {type}       description
+ */
 function instance(units, ip) {
     return new Config(units, ip);
 }
